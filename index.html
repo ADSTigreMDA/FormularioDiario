@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lista de Verificação Diária</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/4.2.1/jspdf.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.n.autotable.min.jsscript"> </script>
+
+</head>
+
+
+<body>
+
+    <main class="pagina">
+
+
+        <div class="topo-pagina">
+
+            <h1>
+                Lista de Verificação Diária de Tubo e Granulação
+            </h1>
+
+
+            <div class="identificacao-documento">
+
+                <strong>
+                    FORM-CQ-028
+                </strong>
+
+                <span>
+                    REV: 03
+                </span>
+
+                <span>
+                    06/11/2025
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="formulario">
+
+
+            <section class="cabecalho">
+
+                <h2>
+                    Dados da folha
+                </h2>
+
+
+                <label for="nome">
+                    Responsável
+                </label>
+
+                <select id="nome">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Otavio">
+                        Otavio
+                    </option>
+
+                    <option value="Luana">
+                        Luana
+                    </option>
+
+                    <option value="Davi">
+                        Davi
+                    </option>
+
+                </select>
+
+
+
+                <label for="data">
+                    Data
+                </label>
+
+                <input
+                    type="date"
+                    id="data"
+                >
+
+
+
+                <label for="turno">
+                    Turno
+                </label>
+
+                <select id="turno">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="1">
+                        1º Turno
+                    </option>
+
+                    <option value="2">
+                        2º Turno
+                    </option>
+
+                    <option value="3">
+                        3º Turno
+                    </option>
+
+                </select>
+
+
+
+                <label for="linha">
+                    Linha em preenchimento
+                </label>
+
+                <select id="linha">
+
+                    <option value="3020">
+                        3020
+                    </option>
+
+                    <option value="3660">
+                        3660
+                    </option>
+
+                    <option value="G1">
+                        G1
+                    </option>
+
+                </select>
+
+
+
+                <div class="resumo">
+
+                    <div>
+                        <span>3020</span>
+                        <strong id="resumo3020">
+                            PENDENTE
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>3660</span>
+                        <strong id="resumo3660">
+                            PENDENTE
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>G1</span>
+                        <strong id="resumoG1">
+                            PENDENTE
+                        </strong>
+                    </div>
+
+                </div>
+
+
+
+                <div class="status-geral">
+
+                    <span>
+                        STATUS GERAL
+                    </span>
+
+                    <div
+                        id="statusGeral"
+                        class="status pendente"
+                    >
+                        PENDENTE
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <section class="area-verificacoes">
+
+
+                <div class="titulo-verificacao">
+
+                    <div>
+
+                        <h2 id="tituloLinha">
+                            Verificações - Linha 3020
+                        </h2>
+
+                        <p>
+                            C = Conforme |
+                            NC = Não Conforme |
+                            N/A = Não se aplica
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        id="statusLinha"
+                        class="status pendente status-linha"
+                    >
+                        PENDENTE
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRODUTO 3020 / 3660 -->
+
+                <div
+                    id="areaProduto"
+                    class="campo-especial"
+                >
+
+                    <label for="produto">
+                        Produto
+                    </label>
+
+                    <select id="produto">
+
+                        <option value="">
+                            Selecione o produto
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- CAMPOS ESPECIAIS DA G1 -->
+
+                <div
+                    id="areaG1"
+                    class="area-g1 escondido"
+                >
+
+                    <div class="campo-g1">
+
+                        <label>
+                            Material
+                        </label>
+
+                        <input
+                            id="materialG1"
+                            type="text"
+                            value="NSE"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-g1">
+
+                        <label for="pesoBag">
+                            Peso do Bag
+                        </label>
+
+                        <div class="peso-container">
+
+                            <input
+                                id="pesoBag"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                placeholder="Ex.: 500"
+                            >
+
+                            <span>
+                                kg
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="tabela-container">
+
+                    <div
+                        id="verificacoes"
+                        class="verificacoes"
+                    >
+                    </div>
+
+                </div>
+
+
+
+                <div class="observacoes">
+
+                    <label for="observacao">
+                        Observações da folha
+                    </label>
+
+                    <textarea
+                        id="observacao"
+                        placeholder="Digite aqui alguma observação..."
+                    ></textarea>
+
+                </div>
+
+
+
+                <div class="acoes">
+
+                    <button
+                        id="btnFinalizar"
+                        class="btn primario"
+                        type="button"
+                        disabled
+                    >
+                        Finalizar folha diária
+                    </button>
+
+
+                    <button
+                        id="btnHistorico"
+                        class="btn secundario"
+                        type="button"
+                    >
+                        Histórico online
+                    </button>
+
+
+                    <span
+                        id="mensagem"
+                        class="mensagem"
+                    >
+                    </span>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+
+        <section
+            id="painelHistorico"
+            class="historico escondido"
+        >
+
+            <div class="historico-topo">
+
+                <h2>
+                    Histórico sincronizado
+                </h2>
+
+                <button
+                    id="btnFecharHistorico"
+                    class="btn secundario"
+                    type="button"
+                >
+                    Fechar
+                </button>
+
+            </div>
+
+
+            <div id="listaHistorico">
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script
+        type="module"
+        src="app.js"
+    ></script>
+
+</body>
+
+</html>
